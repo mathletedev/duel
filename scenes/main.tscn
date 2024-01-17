@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://d4b4v5kthgtdv"]
+[gd_scene load_steps=6 format=3 uid="uid://d4b4v5kthgtdv"]
 
 [ext_resource type="PackedScene" uid="uid://bx6cu41bhw2m4" path="res://scenes/player.tscn" id="1_cr3y4"]
 [ext_resource type="Texture2D" uid="uid://m7jplnkmhjk5" path="res://icon.svg" id="2_obkwf"]
+[ext_resource type="PackedScene" uid="uid://r4f03qd1wgdo" path="res://scenes/box.tscn" id="3_rlo4o"]
+[ext_resource type="PackedScene" uid="uid://dtr0g14sno6qg" path="res://scenes/weapons/pistol.tscn" id="4_3par3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0c5j1"]
 size = Vector2(374, 14)
@@ -11,11 +13,23 @@ size = Vector2(374, 14)
 [node name="Camera" type="Camera2D" parent="."]
 zoom = Vector2(2, 2)
 
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.8, 0.8, 0.8, 1)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -655.0
+offset_top = -442.0
+offset_right = 621.0
+offset_bottom = 451.0
+color = Color(0, 0, 0, 1)
+
 [node name="Player1" parent="." instance=ExtResource("1_cr3y4")]
+unique_name_in_owner = true
 position = Vector2(-50, 0)
 id = 1
 
 [node name="Player2" parent="." instance=ExtResource("1_cr3y4")]
+unique_name_in_owner = true
 position = Vector2(50, 0)
 id = 2
 
@@ -38,3 +52,8 @@ shape = SubResource("RectangleShape2D_0c5j1")
 [node name="Sprite2D" type="Sprite2D" parent="StaticBody2D2"]
 scale = Vector2(2.92969, 0.109375)
 texture = ExtResource("2_obkwf")
+
+[node name="Box" parent="." instance=ExtResource("3_rlo4o")]
+
+[node name="Pistol" parent="." instance=ExtResource("4_3par3")]
+follow_id = 1

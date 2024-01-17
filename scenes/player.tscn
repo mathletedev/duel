@@ -1,7 +1,7 @@
-[gd_scene load_steps=18 format=3 uid="uid://bx6cu41bhw2m4"]
+[gd_scene load_steps=21 format=3 uid="uid://bx6cu41bhw2m4"]
 
-[ext_resource type="Texture2D" uid="uid://bj3uussdyq5i7" path="res://assets/player.png" id="1_4e5n2"]
-[ext_resource type="Script" path="res://scenes/player.gd" id="1_ej5c0"]
+[ext_resource type="Texture2D" uid="uid://3p3k4rba5w2i" path="res://assets/player.png" id="1_4e5n2"]
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_ej5c0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v042a"]
 atlas = ExtResource("1_4e5n2")
@@ -126,7 +126,16 @@ animations = [{
 radius = 6.0
 height = 20.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_h3wxf"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_h1v0n"]
+load_path = "res://.godot/imported/p1_label.png-7708fda72eb4fdce7e47039b32dfdc25.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_mgxjp"]
+load_path = "res://.godot/imported/p2_label.png-2cfcc1db4d527f0d7e5551fce688e3cc.ctex"
+
 [node name="Player" type="CharacterBody2D"]
+collision_layer = 2
 script = ExtResource("1_ej5c0")
 hold_gravity = 350.0
 
@@ -139,3 +148,22 @@ frame_progress = 0.738568
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_krryx")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
+
+[node name="Interaction" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interaction"]
+shape = SubResource("CircleShape2D_h3wxf")
+
+[node name="Labels" type="Node2D" parent="."]
+position = Vector2(0, -20)
+
+[node name="Label1" type="Sprite2D" parent="Labels"]
+visible = false
+texture_filter = 1
+texture = SubResource("CompressedTexture2D_h1v0n")
+
+[node name="Label2" type="Sprite2D" parent="Labels"]
+visible = false
+texture_filter = 1
+texture = SubResource("CompressedTexture2D_mgxjp")

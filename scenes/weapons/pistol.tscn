@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=3 uid="uid://dtr0g14sno6qg"]
+
+[ext_resource type="Texture2D" uid="uid://cs3uw070n8ky7" path="res://assets/weapons/pistol.png" id="1_0lepi"]
+[ext_resource type="Script" path="res://scripts/weapon.gd" id="1_thl65"]
+
+[sub_resource type="Gradient" id="Gradient_a6icu"]
+interpolation_mode = 2
+offsets = PackedFloat32Array(0, 0.632258)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_rb0t0"]
+gradient = SubResource("Gradient_a6icu")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0, 0)
+
+[node name="Pistol" type="Node2D"]
+script = ExtResource("1_thl65")
+
+[node name="Container" type="Node2D" parent="."]
+position = Vector2(15, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Container"]
+texture_filter = 1
+texture = ExtResource("1_0lepi")
+
+[node name="FiringPoint" type="Node2D" parent="Container"]
+position = Vector2(7, -3)
+
+[node name="MuzzleFlash" type="PointLight2D" parent="Container/FiringPoint"]
+visible = false
+scale = Vector2(0.1, 0.1)
+color = Color(0.784314, 0.396078, 0.54902, 1)
+energy = 10.0
+texture = SubResource("GradientTexture2D_rb0t0")
+
+[node name="MuzzleFlashTimer" type="Timer" parent="."]
+wait_time = 0.05
+one_shot = true
+
+[connection signal="timeout" from="MuzzleFlashTimer" to="." method="_on_muzzle_flash_timer_timeout"]

@@ -1,0 +1,68 @@
+[gd_scene load_steps=11 format=3 uid="uid://r4f03qd1wgdo"]
+
+[ext_resource type="Texture2D" uid="uid://csdwnv1rk0ine" path="res://assets/box.png" id="1_mrovk"]
+[ext_resource type="Script" path="res://scripts/box.gd" id="1_w6ifa"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wmhep"]
+atlas = ExtResource("1_mrovk")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c3vkf"]
+atlas = ExtResource("1_mrovk")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qmssw"]
+atlas = ExtResource("1_mrovk")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bbl6e"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wmhep")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c3vkf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qmssw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_moyd1"]
+size = Vector2(18, 18)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_eafgb"]
+radius = 13.0384
+
+[sub_resource type="Gradient" id="Gradient_rdrqk"]
+offsets = PackedFloat32Array(0, 0.567742)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_udiys"]
+gradient = SubResource("Gradient_rdrqk")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[node name="Box" type="CharacterBody2D"]
+script = ExtResource("1_w6ifa")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_bbl6e")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_moyd1")
+
+[node name="Interaction" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interaction"]
+shape = SubResource("CircleShape2D_eafgb")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(0.866667, 0.552941, 0.623529, 1)
+texture = SubResource("GradientTexture2D_udiys")
