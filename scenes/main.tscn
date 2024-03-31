@@ -11,7 +11,7 @@ size = Vector2(374, 14)
 [node name="Main" type="Node"]
 
 [node name="Camera" type="Camera2D" parent="."]
-zoom = Vector2(2, 2)
+zoom = Vector2(3, 3)
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.8, 0.8, 0.8, 1)
